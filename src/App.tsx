@@ -5,6 +5,8 @@ import AnimatedCursor from "react-animated-cursor";
 import HomePage from "./pages/auth/HomePage";
 import logo from "./assets/logo.svg";
 import bgImage from "./assets/pasa.png";
+import RegisterPage from "./pages/auth/RegisterPage";
+import LoginPage from "./pages/auth/LoginPage";
 
 const About = () => (
   <div>
@@ -43,6 +45,8 @@ function App() {
                 path="/"
                 element={<HomePage logo={logo} backgroundImage={bgImage} />}
               />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
