@@ -1,5 +1,7 @@
 // src/pages/auth/RegisterPage.tsx
 import React, { useState } from "react";
+import Label from "../../components/authComponents/Label";
+import Button from "../../components/authComponents/Button";
 
 enum Role {
   PATIENT = "PATIENT",
@@ -109,8 +111,6 @@ const RegisterPage: React.FC = () => {
     };
 
     console.log("Submitting registration:", submissionData);
-
-    // TODO: Call your API here
   };
 
   return (
@@ -123,9 +123,7 @@ const RegisterPage: React.FC = () => {
 
         {/* Role */}
         <div>
-          <label htmlFor="role" className="block mb-1 font-semibold">
-            Register as
-          </label>
+          <Label elem={"role"}>Role</Label>
           <select
             id="role"
             name="role"
@@ -146,9 +144,7 @@ const RegisterPage: React.FC = () => {
 
         {/* First Name */}
         <div>
-          <label htmlFor="firstName" className="block mb-1 font-semibold">
-            First Name
-          </label>
+          <Label elem={"firstName"}>First Name</Label>
           <input
             type="text"
             id="firstName"
@@ -166,16 +162,14 @@ const RegisterPage: React.FC = () => {
 
         {/* Last Name */}
         <div>
-          <label htmlFor="lastName" className="block mb-1 font-semibold">
-            Last Name
-          </label>
+          <Label elem={"lastName"}>Last Name</Label>
           <input
             type="text"
             id="lastName"
             name="lastName"
             value={form.lastName}
             onChange={handleChange}
-            className={`w-full rounded-md p-2 text-gray-900 ${
+            className={`w-full rounded-md p-2  text-gray-200 border border-gray-200 ${
               errors.lastName ? "border-red-500 border-2" : ""
             }`}
           />
@@ -186,16 +180,14 @@ const RegisterPage: React.FC = () => {
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="block mb-1 font-semibold">
-            Email
-          </label>
+          <Label elem={"email"}>Email</Label>
           <input
             type="email"
             id="email"
             name="email"
             value={form.email}
             onChange={handleChange}
-            className={`w-full rounded-md p-2 text-gray-900 ${
+            className={`w-full rounded-md p-2 text-gray-200 border border-gray-200 ${
               errors.email ? "border-red-500 border-2" : ""
             }`}
           />
@@ -206,16 +198,14 @@ const RegisterPage: React.FC = () => {
 
         {/* Password */}
         <div>
-          <label htmlFor="password" className="block mb-1 font-semibold">
-            Password
-          </label>
+          <Label elem={"password"}>Password</Label>
           <input
             type="password"
             id="password"
             name="password"
             value={form.password}
             onChange={handleChange}
-            className={`w-full rounded-md p-2 text-gray-900 ${
+            className={`w-full rounded-md p-2 text-gray-200 border border-gray-200 ${
               errors.password ? "border-red-500 border-2" : ""
             }`}
             placeholder="At least 8 characters"
@@ -230,12 +220,7 @@ const RegisterPage: React.FC = () => {
           <>
             {/* Specialization */}
             <div>
-              <label
-                htmlFor="specialization"
-                className="block mb-1 font-semibold"
-              >
-                Specialization
-              </label>
+              <Label elem={"specialization"}>Specialization</Label>
               <input
                 type="text"
                 id="specialization"
@@ -255,9 +240,7 @@ const RegisterPage: React.FC = () => {
 
             {/* Bio */}
             <div>
-              <label htmlFor="bio" className="block mb-1 font-semibold">
-                Bio
-              </label>
+              <Label elem={"bio"}>Bio</Label>
               <textarea
                 id="bio"
                 name="bio"
@@ -275,9 +258,7 @@ const RegisterPage: React.FC = () => {
 
             {/* Location */}
             <div>
-              <label htmlFor="location" className="block mb-1 font-semibold">
-                Location
-              </label>
+              <Label elem={"location"}>Location</Label>
               <input
                 type="text"
                 id="location"
@@ -295,9 +276,7 @@ const RegisterPage: React.FC = () => {
 
             {/* Rate */}
             <div>
-              <label htmlFor="rate" className="block mb-1 font-semibold">
-                Rate (per hour)
-              </label>
+              <Label elem={"rate"}>Rate (per hour)</Label>
               <input
                 type="number"
                 id="rate"
@@ -321,9 +300,7 @@ const RegisterPage: React.FC = () => {
         {/* Patient-specific fields */}
         {form.role === Role.PATIENT && (
           <div>
-            <label htmlFor="dateOfBirth" className="block mb-1 font-semibold">
-              Date of Birth
-            </label>
+            <Label elem={"dateOfBirth"}>Date of Birth</Label>
             <input
               type="date"
               id="dateOfBirth"
@@ -342,12 +319,7 @@ const RegisterPage: React.FC = () => {
         )}
 
         {/* Submit */}
-        <button
-          type="submit"
-          className="w-full bg-gradient-to-r from-blue-500 to-green-400 py-3 rounded-xl font-semibold text-white shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
-        >
-          Register
-        </button>
+        <Button>Register</Button>
       </form>
     </div>
   );

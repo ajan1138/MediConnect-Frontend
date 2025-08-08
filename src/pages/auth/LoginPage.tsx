@@ -1,10 +1,14 @@
 // src/pages/auth/LoginPage.tsx
 import React, { useState } from "react";
+import Label from "../../components/authComponents/Label";
+import Input from "../../components/authComponents/Input";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
+    {}
+  );
 
   const validate = () => {
     const newErrors: typeof errors = {};
@@ -36,44 +40,36 @@ const LoginPage: React.FC = () => {
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="block mb-1 font-semibold">
-            Email
-          </label>
-          <input
-            type="email"
+          <Label elem={"email"}>Email</Label>
+          <Input
             id="email"
             name="email"
+            type="email"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
               setErrors((prev) => ({ ...prev, email: "" }));
             }}
-            className={`w-full rounded-md p-2 text-gray-900 ${
-              errors.email ? "border-red-500 border-2" : ""
-            }`}
+            error={errors.email}
+            placeholder="Enter your email"
           />
-          {errors.email && <p className="text-red-500 mt-1 text-sm">{errors.email}</p>}
         </div>
 
         {/* Password */}
         <div>
-          <label htmlFor="password" className="block mb-1 font-semibold">
-            Password
-          </label>
-          <input
-            type="password"
+          <Label elem={"password"}>Password</Label>
+          <Input
             id="password"
             name="password"
+            type="password"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
               setErrors((prev) => ({ ...prev, password: "" }));
             }}
-            className={`w-full rounded-md p-2 text-gray-900 ${
-              errors.password ? "border-red-500 border-2" : ""
-            }`}
+            error={errors.password}
+            placeholder="Enter your password"
           />
-          {errors.password && <p className="text-red-500 mt-1 text-sm">{errors.password}</p>}
         </div>
 
         {/* Submit */}

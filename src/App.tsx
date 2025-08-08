@@ -7,6 +7,7 @@ import logo from "./assets/logo.svg";
 import bgImage from "./assets/pasa.png";
 import RegisterPage from "./pages/auth/RegisterPage";
 import LoginPage from "./pages/auth/LoginPage";
+import ActivateAccount from "./components/authComponents/ActivateAccount";
 
 const About = () => (
   <div>
@@ -46,6 +47,7 @@ function App() {
                 element={<HomePage logo={logo} backgroundImage={bgImage} />}
               />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="/activate" element={<ActivateAccount />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
