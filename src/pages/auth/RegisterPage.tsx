@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Label from "../../components/authComponents/Label";
 import Button from "../../components/authComponents/Button";
+import InputEmail from "../../components/forms/InputEmail";
 
 enum Role {
   PATIENT = "PATIENT",
@@ -180,20 +181,11 @@ const RegisterPage: React.FC = () => {
 
         {/* Email */}
         <div>
-          <Label elem={"email"}>Email</Label>
-          <input
-            type="email"
-            id="email"
-            name="email"
+          <InputEmail
             value={form.email}
             onChange={handleChange}
-            className={`w-full rounded-md p-2 text-gray-200 border border-gray-200 ${
-              errors.email ? "border-red-500 border-2" : ""
-            }`}
+            error={errors.email}
           />
-          {errors.email && (
-            <p className="text-red-500 mt-1 text-sm">{errors.email}</p>
-          )}
         </div>
 
         {/* Password */}
@@ -319,7 +311,7 @@ const RegisterPage: React.FC = () => {
         )}
 
         {/* Submit */}
-        <Button>Register</Button>
+        <Button onClick={handleSubmit}>Register</Button>
       </form>
     </div>
   );

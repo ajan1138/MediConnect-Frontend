@@ -1,39 +1,31 @@
-// src/components/authComponents/Input.tsx
-import React from "react";
+import Label from "../authComponents/Label";
 
-interface InputProps {
-  id: string;
-  name: string;
-  type?: string;
+interface InputPasswordProps {
   value: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
-  placeholder?: string;
   className?: string;
-  disabled?: boolean;
+  id?: string;
+  name?: string;
 }
 
-const Input: React.FC<InputProps> = ({
-  id,
-  name,
-  type = "text",
+const InputPassword: React.FC<InputPasswordProps> = ({
   value,
   onChange,
   error,
-  placeholder,
   className = "",
-  disabled = false,
+  id = "password",
+  name = "password",
 }) => {
   return (
     <div>
+      <Label elem={id}>Password</Label>
       <input
-        type={type}
+        type="password"
         id={id}
         name={name}
         value={value}
         onChange={onChange}
-        placeholder={placeholder}
-        disabled={disabled}
         className={`w-full rounded-md p-2 text-gray-200 border border-gray-200 ${
           error ? "border-red-500 border-2" : ""
         } ${className}`}
@@ -43,4 +35,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input;
+export default InputPassword;

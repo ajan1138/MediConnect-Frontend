@@ -16,6 +16,7 @@
     "@types/socket.io-client": "^1.4.36",
     "axios": "^1.11.0",
     "date-fns": "^4.1.0",
+    "lucide-react": "^0.539.0",
     "react": "^19.1.1",
     "react-animated-cursor": "^2.11.2",
     "react-dom": "^19.1.1",

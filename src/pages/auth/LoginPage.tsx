@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import Label from "../../components/authComponents/Label";
 import Input from "../../components/authComponents/Input";
+import Button from "../../components/authComponents/Button";
+import InputEmail from "../../components/forms/InputEmail";
+import InputPassword from "../../components/forms/InputPassword";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -9,6 +12,19 @@ const LoginPage: React.FC = () => {
   const [errors, setErrors] = useState<{ email?: string; password?: string }>(
     {}
   );
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setEmail((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
 
   const validate = () => {
     const newErrors: typeof errors = {};
@@ -40,45 +56,15 @@ const LoginPage: React.FC = () => {
 
         {/* Email */}
         <div>
-          <Label elem={"email"}>Email</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setErrors((prev) => ({ ...prev, email: "" }));
-            }}
-            error={errors.email}
-            placeholder="Enter your email"
-          />
+          <InputEmail value={email} onChange={validate} error={errors.email} />
         </div>
 
         {/* Password */}
         <div>
-          <Label elem={"password"}>Password</Label>
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setErrors((prev) => ({ ...prev, password: "" }));
-            }}
-            error={errors.password}
-            placeholder="Enter your password"
-          />
+          <InputPassword />
         </div>
-
-        {/* Submit */}
-        <button
-          type="submit"
-          className="w-full bg-gradient-to-r from-blue-500 to-green-400 py-3 rounded-xl font-semibold text-white shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
-        >
-          Login
-        </button>
+        {/* Submit + add handleClick*/}
+        <Button>Login</Button>
       </form>
     </div>
   );

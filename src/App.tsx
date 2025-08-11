@@ -7,7 +7,9 @@ import logo from "./assets/logo.svg";
 import bgImage from "./assets/pasa.png";
 import RegisterPage from "./pages/auth/RegisterPage";
 import LoginPage from "./pages/auth/LoginPage";
-import ActivateAccount from "./components/authComponents/ActivateAccount";
+import ActivateAccount from "./pages/auth/ActivateAccount";
+import DoctorProfilePage from "./pages/auth/DoctorProfilePage";
+import DoctorDashboard from "./pages/doctor/DoctorDashboard";
 
 const About = () => (
   <div>
@@ -49,6 +51,8 @@ function App() {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/activate" element={<ActivateAccount />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/doctor/profile" element={<DoctorProfilePage />} />
+              <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
