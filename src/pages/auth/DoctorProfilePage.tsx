@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Label from "../../components/authComponents/Label";
 import Input from "../../components/authComponents/Input";
 import TextArea from "../../components/authComponents/TextArea";
+import Navbar from "../../components/forms/Navbar";
 import { useNavigate } from "react-router-dom";
 
 interface DoctorProfile {
