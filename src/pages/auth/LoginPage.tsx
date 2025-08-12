@@ -19,11 +19,8 @@ const LoginPage: React.FC = () => {
     >
   ) => {
     const { name, value } = e.target;
-    setEmail((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    setErrors((prev) => ({ ...prev, [name]: "" }));
+    setPassword((prev) => (name === "password" ? value : prev));
+    setErrors((prev) => ({ [name]: "" }));
   };
 
   const validate = () => {
@@ -61,7 +58,7 @@ const LoginPage: React.FC = () => {
 
         {/* Password */}
         <div>
-          <InputPassword />
+          <InputPassword value={"nema"} onChange={validate} />
         </div>
         {/* Submit + add handleClick*/}
         <Button>Login</Button>

@@ -10,6 +10,9 @@ import LoginPage from "./pages/auth/LoginPage";
 import ActivateAccount from "./pages/auth/ActivateAccount";
 import DoctorProfilePage from "./pages/auth/DoctorProfilePage";
 import DoctorDashboard from "./pages/doctor/DoctorDashboard";
+import AppointmentsList from "./pages/doctor/AppointmentsList";
+import AppointmentDetails from "./pages/doctor/AppointmentDetails";
+import Navbar from "./components/forms/Navbar";
 
 const About = () => (
   <div>
@@ -52,6 +55,14 @@ function App() {
               <Route path="/activate" element={<ActivateAccount />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/doctor/profile" element={<DoctorProfilePage />} />
+              <Route
+                path="/doctor/appointments"
+                element={<AppointmentsList />}
+              />
+              <Route
+                path="/doctor/appointments/:appointmentId"
+                element={<AppointmentDetails />}
+              />
               <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
