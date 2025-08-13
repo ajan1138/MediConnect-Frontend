@@ -14,6 +14,7 @@ import AppointmentsList from "./pages/doctor/AppointmentsList";
 import AppointmentDetails from "./pages/doctor/AppointmentDetails";
 import PatientDetails from "./pages/doctor/PatientDetails";
 import PatientDashboard from "./pages/patient/PatientDashboard";
+import PatientSettings from "./pages/patient/PatientSettings";
 
 const About = () => (
   <div>
@@ -67,6 +68,7 @@ function App() {
               <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
               <Route path="/doctor/patient/:id" element={<PatientDetails />} />
               <Route path="/patient/dashboard" element={<PatientDashboard />} />
+              <Route path="/patient/settings" element={<PatientSettings />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
