@@ -45,6 +45,7 @@ function App() {
         <div className="">
           <main>
             <Routes>
+              // Routes for no login user
               <Route
                 path="/"
                 element={<HomePage logo={logo} backgroundImage={bgImage} />}
@@ -52,6 +53,7 @@ function App() {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/activate" element={<ActivateAccount />} />
               <Route path="/login" element={<LoginPage />} />
+              // Routes for Doctors
               <Route path="/doctor/profile" element={<DoctorProfilePage />} />
               <Route
                 path="/doctor/appointments"
@@ -62,13 +64,13 @@ function App() {
                 element={<AppointmentDetails />}
               />
               <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
+              // Routes for Patients
               <Route path="/doctor/patient/:id" element={<PatientDetails />} />
               <Route path="/patient/dashboard" element={<PatientDashboard />} />
               <Route path="/patient/settings" element={<PatientSettings />} />
-              // optional routes
+              // Routes for common pages
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              // this page should be implemented
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
