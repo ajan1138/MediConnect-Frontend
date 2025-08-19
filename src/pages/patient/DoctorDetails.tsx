@@ -1,16 +1,9 @@
 // src/pages/doctor/DoctorDetails.tsx
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  User,
-  Star,
-  MapPin,
-  Briefcase,
-  Mail,
-  Phone,
-  Globe,
-  Calendar,
-} from "lucide-react";
+import { Star, MapPin, Briefcase, Mail, Phone, Calendar } from "lucide-react";
+import { FaUserDoctor } from "react-icons/fa6";
+import ProfileHeader from "../../components/detailsComponents/ProfileHeader";
 
 interface Appointment {
   id: number;
@@ -107,34 +100,20 @@ const DoctorDetails: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6 max-w-5xl mx-auto">
-      <div className="flex justify-between items-start mb-8">
-        <div className="flex items-center gap-4">
-          {doctor.profileImageUrl && (
-            <img
-              src={doctor.profileImageUrl}
-              alt={doctor.fullName}
-              className="w-24 h-24 rounded-full border-2 border-blue-400"
-            />
-          )}
-          <div>
-            <h1 className="text-4xl font-bold">{doctor.fullName}</h1>
-            <p className="text-blue-400">{doctor.specialization}</p>
-          </div>
-        </div>
-        <button
-          onClick={() => navigate(-1)}
-          className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-md"
-        >
-          Back
-        </button>
-      </div>
+      {/* Profile Header */}
+      <ProfileHeader
+        icon={<FaUserDoctor className="w-10 h-10 text-blue-400" />}
+        title={doctor.fullName}
+        subtitle={doctor.specialization}
+        onBack={() => navigate(-1)}
+      />
 
       {/* Info Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Contact & Bio */}
         <section className="bg-gray-800 p-6 rounded-xl">
           <h2 className="text-2xl font-semibold mb-4 text-blue-400 flex items-center gap-2">
-            <User className="w-6 h-6" /> Contact & Info
+            Contact & Info
           </h2>
           <p className="mb-4 text-gray-300">{doctor.bio}</p>
           <InfoRow icon={<Mail />} label="Email" value={doctor.email} />
@@ -189,6 +168,7 @@ const DoctorDetails: React.FC = () => {
                   <th className="pb-2">Date</th>
                   <th className="pb-2">Patient</th>
                   <th className="pb-2">Status</th>
+                  <th className="pb-2">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -211,6 +191,16 @@ const DoctorDetails: React.FC = () => {
                       >
                         {appt.status}
                       </span>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() =>
+                          navigate(`/doctor/appointments/${appt.id}`)
+                        }
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        View Details
+                      </button>
                     </td>
                   </tr>
                 ))}

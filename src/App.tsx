@@ -15,7 +15,7 @@ import PatientDetails from "./pages/doctor/PatientDetails";
 import PatientDashboard from "./pages/patient/PatientDashboard";
 import PatientSettings from "./pages/patient/PatientSettings";
 import NotFound from "./components/dobreKomponente/NotFound";
-import DoctorSettings from "./pages/doctor/DoctorProfilePage";
+import DoctorSettings from "./pages/doctor/DoctorSettings";
 import DoctorDetails from "./pages/patient/DoctorDetails";
 
 const About = () => (

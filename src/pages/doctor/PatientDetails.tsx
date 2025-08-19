@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { User, HeartPulse, ClipboardList, Calendar } from "lucide-react";
+import ProfileHeader from "../../components/detailsComponents/ProfileHeader";
 
 interface Patient {
   id: string;
@@ -90,18 +91,11 @@ const PatientDetails: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6 max-w-6xl mx-auto">
-      <div className="flex justify-between items-start mb-8">
-        <h1 className="text-4xl font-bold flex items-center gap-3">
-          <User className="w-10 h-10 text-blue-400" />
-          {patient.name}
-        </h1>
-        <button
-          onClick={() => navigate(-1)}
-          className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-md"
-        >
-          Back
-        </button>
-      </div>
+      <ProfileHeader
+        icon={<User className="w-10 h-10 text-blue-400" />}
+        title={patient.name}
+        onBack={() => navigate(-1)}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Personal Information */}
