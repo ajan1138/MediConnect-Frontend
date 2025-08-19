@@ -8,7 +8,6 @@ import bgImage from "./assets/pasa.png";
 import RegisterPage from "./pages/auth/RegisterPage";
 import LoginPage from "./pages/auth/LoginPage";
 import ActivateAccount from "./pages/auth/ActivateAccount";
-import DoctorProfilePage from "./pages/doctor/DoctorProfilePage";
 import DoctorDashboard from "./pages/doctor/DoctorDashboard";
 import AppointmentsList from "./pages/doctor/AppointmentsList";
 import AppointmentDetails from "./pages/doctor/AppointmentDetails";
@@ -16,6 +15,8 @@ import PatientDetails from "./pages/doctor/PatientDetails";
 import PatientDashboard from "./pages/patient/PatientDashboard";
 import PatientSettings from "./pages/patient/PatientSettings";
 import NotFound from "./components/dobreKomponente/NotFound";
+import DoctorSettings from "./pages/doctor/DoctorProfilePage";
+import DoctorDetails from "./pages/patient/DoctorDetails";
 
 const About = () => (
   <div>
@@ -54,7 +55,7 @@ function App() {
               <Route path="/activate" element={<ActivateAccount />} />
               <Route path="/login" element={<LoginPage />} />
               // Routes for Doctors
-              <Route path="/doctor/profile" element={<DoctorProfilePage />} />
+              <Route path="/doctor/settings" element={<DoctorSettings />} />
               <Route
                 path="/doctor/appointments"
                 element={<AppointmentsList />}
@@ -64,10 +65,11 @@ function App() {
                 element={<AppointmentDetails />}
               />
               <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
-              // Routes for Patients
               <Route path="/doctor/patient/:id" element={<PatientDetails />} />
+              // Routes for Patients
               <Route path="/patient/dashboard" element={<PatientDashboard />} />
               <Route path="/patient/settings" element={<PatientSettings />} />
+              <Route path="/patient/doctor/:id" element={<DoctorDetails />} />
               // Routes for common pages
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />

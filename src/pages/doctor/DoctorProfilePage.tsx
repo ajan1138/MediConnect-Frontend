@@ -26,7 +26,7 @@ interface DoctorSettingsFormState {
   hospitalAffiliation: string;
 }
 
-const DoctorProfilePage: React.FC = () => {
+const DoctorSettings: React.FC = () => {
   const [form, setForm] = useState<DoctorSettingsFormState>({
     firstName: "",
     lastName: "",
@@ -566,4 +566,4 @@ const DoctorProfilePage: React.FC = () => {
   );
 };
 
-export default DoctorProfilePage;
+export default DoctorSettings;
