@@ -8,13 +8,14 @@ import bgImage from "./assets/pasa.png";
 import RegisterPage from "./pages/auth/RegisterPage";
 import LoginPage from "./pages/auth/LoginPage";
 import ActivateAccount from "./pages/auth/ActivateAccount";
-import DoctorProfilePage from "./pages/auth/DoctorProfilePage";
+import DoctorProfilePage from "./pages/doctor/DoctorProfilePage";
 import DoctorDashboard from "./pages/doctor/DoctorDashboard";
 import AppointmentsList from "./pages/doctor/AppointmentsList";
 import AppointmentDetails from "./pages/doctor/AppointmentDetails";
 import PatientDetails from "./pages/doctor/PatientDetails";
 import PatientDashboard from "./pages/patient/PatientDashboard";
 import PatientSettings from "./pages/patient/PatientSettings";
+import NotFound from "./components/dobreKomponente/NotFound";
 
 const About = () => (
   <div>
@@ -26,11 +27,6 @@ const Contact = () => (
   <div>
     <h1>Contact Page</h1>
     <p>Get in touch with us!</p>
-  </div>
-);
-const NotFound = () => (
-  <div>
-    <h1>404 - Page Not Found</h1>
   </div>
 );
 
@@ -69,8 +65,10 @@ function App() {
               <Route path="/doctor/patient/:id" element={<PatientDetails />} />
               <Route path="/patient/dashboard" element={<PatientDashboard />} />
               <Route path="/patient/settings" element={<PatientSettings />} />
+              // optional routes
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              // this page should be implemented
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
