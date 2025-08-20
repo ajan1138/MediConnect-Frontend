@@ -99,7 +99,7 @@ const DoctorDetails: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6 max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gray-900 text-white px-34 py-10 min-w-screen mx-auto">
       {/* Profile Header */}
       <ProfileHeader
         icon={<FaUserDoctor className="w-10 h-10 text-blue-400" />}
