@@ -242,12 +242,6 @@ const AppointmentDetails: React.FC = () => {
                 label="Decline"
               />
               <ActionButton
-                disabled={loading || appointment.status !== "ACCEPTED"}
-                onClick={() => handleAction("complete")}
-                color="blue"
-                label="Complete"
-              />
-              <ActionButton
                 disabled={
                   loading ||
                   (appointment.status !== "PENDING" &&
@@ -258,6 +252,14 @@ const AppointmentDetails: React.FC = () => {
                 label="Cancel"
               />
             </div>
+          )}
+          {appointment.status === "ACCEPTED" && (
+            <ActionButton
+              disabled={loading || appointment.status !== "ACCEPTED"}
+              onClick={() => handleAction("complete")}
+              color="blue"
+              label="Complete"
+            />
           )}
         </section>
 
