@@ -118,7 +118,7 @@ const AppointmentDetails: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-900 text-white p-10 px-32 min-w-screen mx-auto">
       <h1 className="text-5xl font-extrabold mb-8">Appointment Details</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -205,40 +205,60 @@ const AppointmentDetails: React.FC = () => {
               <FileText className="w-6 h-6 text-yellow-400" />
               Prescription
             </h3>
-            <p className="text-gray-400 italic">No prescription added yet.</p>
+            <p className="text-gray-400 italic mb-4">
+              No prescription added yet.
+            </p>
+
+            {/* Choose file button */}
+            <label className="block cursor-pointer bg-yellow-400 text-gray-900 font-medium py-2 px-4 rounded-lg hover:bg-yellow-300 transition-colors text-center mb-3">
+              Choose File
+              <input type="file" className="hidden" />
+            </label>
+
+            {/* Download/View file buttons */}
+            <div className="flex gap-3">
+              <button className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-400 transition-colors">
+                View File
+              </button>
+              <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-400 transition-colors">
+                Download File
+              </button>
+            </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-4 mt-6">
-            <ActionButton
-              disabled={loading || appointment.status !== "PENDING"}
-              onClick={() => handleAction("accept")}
-              color="green"
-              label="Accept"
-            />
-            <ActionButton
-              disabled={loading || appointment.status !== "PENDING"}
-              onClick={() => handleAction("decline")}
-              color="red"
-              label="Decline"
-            />
-            <ActionButton
-              disabled={loading || appointment.status !== "ACCEPTED"}
-              onClick={() => handleAction("complete")}
-              color="blue"
-              label="Complete"
-            />
-            <ActionButton
-              disabled={
-                loading ||
-                (appointment.status !== "PENDING" &&
-                  appointment.status !== "ACCEPTED")
-              }
-              onClick={() => handleAction("cancel")}
-              color="yellow"
-              label="Cancel"
-            />
-          </div>
+          {appointment.status === "PENDING" && (
+            <div className="flex flex-wrap gap-4 mt-6">
+              <ActionButton
+                disabled={loading || appointment.status !== "PENDING"}
+                onClick={() => handleAction("accept")}
+                color="green"
+                label="Accept"
+              />
+              <ActionButton
+                disabled={loading || appointment.status !== "PENDING"}
+                onClick={() => handleAction("decline")}
+                color="red"
+                label="Decline"
+              />
+              <ActionButton
+                disabled={loading || appointment.status !== "ACCEPTED"}
+                onClick={() => handleAction("complete")}
+                color="blue"
+                label="Complete"
+              />
+              <ActionButton
+                disabled={
+                  loading ||
+                  (appointment.status !== "PENDING" &&
+                    appointment.status !== "ACCEPTED")
+                }
+                onClick={() => handleAction("cancel")}
+                color="yellow"
+                label="Cancel"
+              />
+            </div>
+          )}
         </section>
 
         {/* Right - Patient Info */}
