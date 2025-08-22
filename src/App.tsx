@@ -17,6 +17,7 @@ import PatientSettings from "./pages/patient/PatientSettings";
 import NotFound from "./components/dobreKomponente/NotFound";
 import DoctorSettings from "./pages/doctor/DoctorSettings";
 import DoctorDetails from "./pages/patient/DoctorDetails";
+import PatientAppointmentDetails from "./pages/patient/PatientAppointmentDetails";
 
 const About = () => (
   <div>
@@ -70,6 +71,10 @@ function App() {
               <Route path="/patient/dashboard" element={<PatientDashboard />} />
               <Route path="/patient/settings" element={<PatientSettings />} />
               <Route path="/patient/doctor/:id" element={<DoctorDetails />} />
+              <Route
+                path="/patient/appointments/:id"
+                element={<PatientAppointmentDetails />}
+              />
               // Routes for common pages
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />

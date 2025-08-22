@@ -5,10 +5,6 @@ import {
   Calendar,
   User,
   Clock,
-  CheckCircle,
-  XCircle,
-  AlertCircle,
-  Info,
   ClipboardList,
   FileText,
   MapPin,
@@ -261,6 +257,18 @@ const AppointmentDetails: React.FC = () => {
               label="Complete"
             />
           )}
+
+          <button
+            type="button"
+            className="w-full bg-gradient-to-r from-blue-500 to-green-400 py-3 rounded-xl font-semibold text-white shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
+            onClick={() => {
+              console.log("Doctor Notes:", doctorNotes);
+              console.log("Diagnosis:", diagnosis);
+              alert("Notes and diagnosis saved! (UI only)");
+            }}
+          >
+            Save
+          </button>
         </section>
 
         {/* Right - Patient Info */}
