@@ -18,6 +18,8 @@ import NotFound from "./components/dobreKomponente/NotFound";
 import DoctorSettings from "./pages/doctor/DoctorSettings";
 import DoctorDetails from "./pages/patient/DoctorDetails";
 import PatientAppointmentDetails from "./pages/patient/PatientAppointmentDetails";
+import PatientAppointmentsList from "./pages/patient/PatientAppointmentList";
+import DoctorSearchPage from "./pages/patient/DoctorSearchPage";
 
 const About = () => (
   <div>
@@ -56,6 +58,7 @@ function App() {
               <Route path="/activate" element={<ActivateAccount />} />
               <Route path="/login" element={<LoginPage />} />
               // Routes for Doctors
+              <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
               <Route path="/doctor/settings" element={<DoctorSettings />} />
               <Route
                 path="/doctor/appointments"
@@ -65,12 +68,16 @@ function App() {
                 path="/doctor/appointments/:appointmentId"
                 element={<AppointmentDetails />}
               />
-              <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
               <Route path="/doctor/patient/:id" element={<PatientDetails />} />
               // Routes for Patients
               <Route path="/patient/dashboard" element={<PatientDashboard />} />
               <Route path="/patient/settings" element={<PatientSettings />} />
+              <Route path="/patient/doctors" element={<DoctorSearchPage />} />
               <Route path="/patient/doctor/:id" element={<DoctorDetails />} />
+              <Route
+                path="/patient/appointments"
+                element={<PatientAppointmentsList />}
+              />
               <Route
                 path="/patient/appointments/:id"
                 element={<PatientAppointmentDetails />}
