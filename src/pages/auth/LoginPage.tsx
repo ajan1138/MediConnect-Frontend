@@ -1,10 +1,9 @@
 // src/pages/auth/LoginPage.tsx
 import React, { useState } from "react";
-import Label from "../../components/authComponents/Label";
-import Input from "../../components/authComponents/Input";
 import Button from "../../components/authComponents/Button";
 import InputEmail from "../../components/forms/InputEmail";
 import InputPassword from "../../components/forms/InputPassword";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -13,14 +12,21 @@ const LoginPage: React.FC = () => {
     {}
   );
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setPassword((prev) => (name === "password" ? value : prev));
-    setErrors((prev) => ({ [name]: "" }));
+  const navigate = useNavigate();
+
+  // Handle input changes
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    if (errors.email) {
+      setErrors((prev) => ({ ...prev, email: undefined }));
+    }
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    if (errors.password) {
+      setErrors((prev) => ({ ...prev, password: undefined }));
+    }
   };
 
   const validate = () => {
@@ -34,13 +40,41 @@ const LoginPage: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validate()) return;
 
-    // TODO: Implement login API call here
-    console.log("Logging in with", { email, password });
+    try {
+      const response = await fetch(
+        "http://localhost:8088/api/v1/auth/authenticate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+          credentials: "include",
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Login failed");
+      }
+
+      const user = await response.json();
+      const role = user.role.toLowerCase();
+
+      console.log("Login successful, token stored", user.role);
+      navigate(`/${role}/dashboard`);
+    } catch (error) {
+      console.error("Login error:", error);
+      // Show error to user
+      setErrors({
+        password: error instanceof Error ? error.message : "Login failed",
+      });
+    }
   };
 
   return (
@@ -51,16 +85,21 @@ const LoginPage: React.FC = () => {
       >
         <h2 className="text-3xl font-bold text-center mb-6">Login</h2>
 
-        {/* Email */}
-        <div>
-          <InputEmail value={email} onChange={validate} error={errors.email} />
-        </div>
+        {/* Email Input */}
+        <InputEmail
+          value={email}
+          onChange={handleEmailChange}
+          error={errors.email}
+        />
 
-        {/* Password */}
-        <div>
-          <InputPassword value={"nema"} onChange={validate} />
-        </div>
-        {/* Submit + add handleClick*/}
+        {/* Password Input */}
+        <InputPassword
+          value={password}
+          onChange={handlePasswordChange}
+          error={errors.password}
+        />
+
+        {/* Submit Button */}
         <Button>Login</Button>
       </form>
     </div>

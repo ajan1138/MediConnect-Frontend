@@ -73,7 +73,7 @@ function App() {
               <Route path="/patient/dashboard" element={<PatientDashboard />} />
               <Route path="/patient/settings" element={<PatientSettings />} />
               <Route path="/patient/doctors" element={<DoctorSearchPage />} />
-              <Route path="/patient/doctor/:id" element={<DoctorDetails />} />
+              <Route path="/patient/doctors/:id" element={<DoctorDetails />} />
               <Route
                 path="/patient/appointments"
                 element={<PatientAppointmentsList />}
