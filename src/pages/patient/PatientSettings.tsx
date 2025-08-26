@@ -1,4 +1,3 @@
-import React from "react";
 import { UnifiedSettingsPage } from "../../components/forms/UnifiedSettings";
 
 export default function PatientSettings() {

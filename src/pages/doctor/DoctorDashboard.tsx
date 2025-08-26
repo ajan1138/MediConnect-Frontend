@@ -1,5 +1,5 @@
 // src/pages/doctor/Dashboard.tsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Calendar,
   User,
@@ -49,6 +49,29 @@ const DoctorDashboard: React.FC = () => {
     Pending: "bg-yellow-400 text-yellow-900",
     Cancelled: "bg-red-500 text-red-900",
   };
+
+  const [doctor, setDoctor] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("http://localhost:8088/api/v1/doctor/me", {
+      credentials: "include",
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => setDoctor(data))
+      .then((data) => console.log(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  console.log("Logged in doctor:", doctor);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!doctor) return <div>No doctor data</div>;
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">

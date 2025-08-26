@@ -26,59 +26,83 @@ export interface Doctor {
 }
 
 const DoctorDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const [doctor, setDoctor] = useState<Doctor | null>(null);
+  const [doctor, setDoctor] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchDoctor = async () => {
-      try {
-        // Replace this mock with your real API call
-        const mockDoctor: Doctor = {
-          id: 1,
-          user: {
-            id: 10,
-            fullName: "Dr. Emily Carter",
-            email: "emily.carter@example.com",
-            phone: "+1 (555) 987-6543",
-            profileImageUrl: "https://via.placeholder.com/150",
-          },
-          specialization: "Cardiology",
-          bio: "Dedicated cardiologist with over 15 years of experience in preventive cardiology and heart disease management.",
-          location: "New York, USA",
-          isApproved: true,
-          rate: 4.8,
-          createdDate: "2024-01-12T10:30:00",
-          lastModifiedDate: "2025-08-10T12:45:00",
-        };
+    fetch("http://localhost:8088/api/v1/patient/doctors/10", {
+      credentials: "include",
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Unauthorized");
+        return res.json();
+      })
+      .then((data) => setDoctor(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
 
-        setDoctor(mockDoctor);
-      } catch (error) {
-        console.error("Error fetching doctor:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!doctor) return <div>No doctor data</div>;
 
-    fetchDoctor();
-  }, [id]);
+  console.log("Logged in doctor:", doctor);
+  // const { id } = useParams<{ id: string }>();
+  // const navigate = useNavigate();
+  // const [doctor, setDoctor] = useState<Doctor | null>(null);
+  // const [loading, setLoading] = useState(true);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-        Loading doctor details...
-      </div>
-    );
-  }
+  // useEffect(() => {
+  //   const fetchDoctor = async () => {
+  //     try {
+  //       // Replace this mock with your real API call
+  //       const mockDoctor: Doctor = {
+  //         id: 1,
+  //         user: {
+  //           id: 10,
+  //           fullName: "Dr. Emily Carter",
+  //           email: "emily.carter@example.com",
+  //           phone: "+1 (555) 987-6543",
+  //           profileImageUrl: "https://via.placeholder.com/150",
+  //         },
+  //         specialization: "Cardiology",
+  //         bio: "Dedicated cardiologist with over 15 years of experience in preventive cardiology and heart disease management.",
+  //         location: "New York, USA",
+  //         isApproved: true,
+  //         rate: 4.8,
+  //         createdDate: "2024-01-12T10:30:00",
+  //         lastModifiedDate: "2025-08-10T12:45:00",
+  //       };
 
-  if (!doctor) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-        Doctor not found
-      </div>
-    );
-  }
+  //       setDoctor(mockDoctor);
+  //     } catch (error) {
+  //       console.error("Error fetching doctor:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchDoctor();
+  // }, [id]);
+
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+  //       Loading doctor details...
+  //     </div>
+  //   );
+  // }
+
+  // if (!doctor) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+  //       Doctor not found
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white px-6 py-10 mx-auto">

@@ -1,9 +1,8 @@
-// src/pages/auth/LoginPage.tsx
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/authComponents/Button";
 import InputEmail from "../../components/forms/InputEmail";
 import InputPassword from "../../components/forms/InputPassword";
-import { useNavigate } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -14,35 +13,28 @@ const LoginPage: React.FC = () => {
 
   const navigate = useNavigate();
 
-  // Handle input changes
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    if (errors.email) {
-      setErrors((prev) => ({ ...prev, email: undefined }));
-    }
+    if (errors.email) setErrors((prev) => ({ ...prev, email: undefined }));
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (errors.password) {
+    if (errors.password)
       setErrors((prev) => ({ ...prev, password: undefined }));
-    }
   };
 
   const validate = () => {
     const newErrors: typeof errors = {};
     if (!email.trim()) newErrors.email = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = "Email is invalid";
-
     if (!password) newErrors.password = "Password is required";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!validate()) return;
 
     try {
@@ -50,9 +42,7 @@ const LoginPage: React.FC = () => {
         "http://localhost:8088/api/v1/auth/authenticate",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
           credentials: "include",
         }
@@ -65,12 +55,8 @@ const LoginPage: React.FC = () => {
 
       const user = await response.json();
       const role = user.role.toLowerCase();
-
-      console.log("Login successful, token stored", user.role);
       navigate(`/${role}/dashboard`);
     } catch (error) {
-      console.error("Login error:", error);
-      // Show error to user
       setErrors({
         password: error instanceof Error ? error.message : "Login failed",
       });
@@ -84,22 +70,16 @@ const LoginPage: React.FC = () => {
         className="max-w-md w-full bg-gray-800 p-8 rounded-xl shadow-lg text-white space-y-6"
       >
         <h2 className="text-3xl font-bold text-center mb-6">Login</h2>
-
-        {/* Email Input */}
         <InputEmail
           value={email}
           onChange={handleEmailChange}
           error={errors.email}
         />
-
-        {/* Password Input */}
         <InputPassword
           value={password}
           onChange={handlePasswordChange}
           error={errors.password}
         />
-
-        {/* Submit Button */}
         <Button>Login</Button>
       </form>
     </div>

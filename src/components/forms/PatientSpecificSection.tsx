@@ -12,7 +12,6 @@ interface PatientSpecificSectionProps {
 
 export const PatientSpecificSection: React.FC<PatientSpecificSectionProps> = ({
   form,
-  errors,
   onChange,
 }) => (
   <div className="space-y-6">

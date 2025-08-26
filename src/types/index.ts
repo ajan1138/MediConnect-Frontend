@@ -20,7 +20,6 @@ export interface Doctor {
   lastModifiedDate: string;
 }
 
-// You can also add other related types here
 export interface Filters {
   searchQuery: string;
   specialization: string;

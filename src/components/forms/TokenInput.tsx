@@ -29,9 +29,6 @@ export const TokenInput: React.FC<TokenInputProps> = ({
       onChange={handleChange}
       error={error}
       placeholder="123456"
-      className={`text-center text-2xl font-mono tracking-widest ${
-        disabled ? "opacity-50" : ""
-      }`}
       required
     />
   );

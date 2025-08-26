@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AnimatedCursor from "react-animated-cursor";
 import HomePage from "./pages/auth/HomePage";
 import logo from "./assets/logo.svg";
@@ -73,7 +73,7 @@ function App() {
               <Route path="/patient/dashboard" element={<PatientDashboard />} />
               <Route path="/patient/settings" element={<PatientSettings />} />
               <Route path="/patient/doctors" element={<DoctorSearchPage />} />
-              <Route path="/patient/doctors/:id" element={<DoctorDetails />} />
+              <Route path="/patient/doctor/:id" element={<DoctorDetails />} />
               <Route
                 path="/patient/appointments"
                 element={<PatientAppointmentsList />}

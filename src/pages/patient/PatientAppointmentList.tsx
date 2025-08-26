@@ -8,7 +8,6 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  Plus,
   MapPin,
   Phone,
   Video,

@@ -11,7 +11,7 @@ export const useAccountActivation = () => {
   const updateToken = (value: string) => {
     const numericValue = value.replace(/\D/g, "").slice(0, 6);
     setToken(numericValue);
-    
+
     if (errors.token) {
       setErrors((prev) => ({ ...prev, token: "" }));
     }
@@ -19,7 +19,7 @@ export const useAccountActivation = () => {
 
   const validateToken = () => {
     const newErrors: { token?: string } = {};
-    
+
     if (!token.trim()) {
       newErrors.token = "Activation code is required";
     } else if (!/^\d{6}$/.test(token)) {
@@ -34,7 +34,7 @@ export const useAccountActivation = () => {
     if (!validateToken()) return false;
 
     setIsLoading(true);
-    setErrors({}); 
+    setErrors({});
 
     try {
       const response = await fetch(
@@ -58,17 +58,16 @@ export const useAccountActivation = () => {
         return false;
       }
 
-      navigate("/login", { 
-        state: { 
-          message: "Account activated successfully! Please log in." 
-        } 
+      navigate("/login", {
+        state: {
+          message: "Account activated successfully! Please log in.",
+        },
       });
       return true;
-
     } catch (error) {
       console.error("Activation error:", error);
-      setErrors({ 
-        submit: "Activation failed. Please try again or contact support." 
+      setErrors({
+        submit: "Activation failed. Please try again or contact support.",
       });
       return false;
     } finally {
@@ -78,7 +77,7 @@ export const useAccountActivation = () => {
 
   const resendActivationCode = async () => {
     setIsResending(true);
-    setErrors({}); 
+    setErrors({});
 
     try {
       const response = await fetch(
@@ -99,11 +98,10 @@ export const useAccountActivation = () => {
 
       // Show success message (you might want to add a success state)
       console.log("Activation code resent successfully");
-      
     } catch (error) {
       console.error("Resend error:", error);
-      setErrors({ 
-        submit: "Failed to resend code. Please try again." 
+      setErrors({
+        submit: "Failed to resend code. Please try again.",
       });
     } finally {
       setIsResending(false);
